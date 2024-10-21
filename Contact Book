@@ -1,0 +1,83 @@
+contacts=[]
+
+def add_contact():
+    phone_no=int(input("Enter the Contact number:  "))
+    name=str(input(f"Enter the name of {phone_no}: "))
+    email=str(input(f"Enter the email of the {name}: "))
+    address=str(input(f"Enter the address of {name}: "))
+    contacts.append({"Phone_no":phone_no,"Name":name,"E-mail":email,"Address":address})
+    print("save sucessfully!")
+def view_contact():
+    # veiw_name=input("Enter the name of contact to view: ")
+    if  not contacts:
+        print("Not available")
+        return
+        
+    
+    print("\nContact detail: ")
+    for contact in contacts:
+        print(f"Name: {contact['Name']}\nPhone_no: {contact['Phone_no']}")
+    
+    
+def search_contact():
+    search_item=input("Enter the name or phone number to search: ")
+    found_search=[c for c in contacts if search_item in c['Name'] or search_item in c['Phone_no']]
+    
+    if found_search:
+        print("\nSearch Results:")
+        for contact in found_search:
+            print(f"Name : {contact['Name']}\nPone_no: {contact['Phone_no']}")
+    else:
+        print("No contacts found.")    
+def update_contact():
+    name=input("Enter the name of the contact to update: ")
+    for contact in contacts:
+        if contact['Name']==name:
+            contact['Pone_no']=int(input("Enter the update phone number: "))
+            contact['E-mail']=int(input("Enter the update email: "))
+            contact['Address']=int(input("Enter the update address: "))
+            print(f"contact {name} updated successfully!")
+            return
+        
+    print("No contacts found.")
+        
+
+def delete_contact():
+    name=input("Enter the name of the contact to delete: ")
+    for contact in contacts:
+        if contact['Name']==name:
+            contacts.remove(contact)
+            print("contact deleted sucessfully!")
+            return
+        
+    print("No contacts found.")
+            
+
+def main():
+    while True:
+        print("\n CONTACT BOOK")
+        print("1.  Add contact")
+        print("2. Veiw contact")
+        print("3. Search contact")
+        print("4. Update contact")
+        print("5. Delete contact")
+        print("6. Exit")
+        
+        choice=int(input("Enter the functon you want to perform from options:  "))
+        if choice == 1:
+            add_contact()
+        elif choice==2:
+            view_contact()
+        elif choice==3:
+            search_contact()
+        elif choice==4:
+            update_contact()
+        elif choice==5:
+            delete_contact()
+        elif choice==6:
+            print("Exciting....:)")
+            break
+        else:
+            print("invalid choice.Try again")
+main()
+    
